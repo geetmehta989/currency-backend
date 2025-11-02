@@ -11,4 +11,4 @@ services:
       - key: REGION
         value: AR
     healthCheckPath: /health
-
+    autoDeploy: true
