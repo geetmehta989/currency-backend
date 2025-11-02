@@ -8,7 +8,6 @@ const db = require('./db/connection');
 require('./utils/cache'); // Initialize cache
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 const REGION = process.env.REGION || 'AR';
 
 // Middleware
@@ -68,14 +67,16 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 10000;
+
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📍 Region: ${REGION}`);
   console.log(`📊 Endpoints:`);
-  console.log(`   GET /quotes - Fetch USD quotes`);
-  console.log(`   GET /average - Get average prices`);
-  console.log(`   GET /slippage - Calculate slippage`);
-  console.log(`   GET /health - Health check`);
+  console.log(`   GET http://localhost:${PORT}/quotes - Fetch USD quotes`);
+  console.log(`   GET http://localhost:${PORT}/average - Get average prices`);
+  console.log(`   GET http://localhost:${PORT}/slippage - Calculate slippage`);
+  console.log(`   GET http://localhost:${PORT}/health - Health check`);
 });
 
 // Graceful shutdown
